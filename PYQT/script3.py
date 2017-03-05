@@ -28,6 +28,18 @@ class App(QMainWindow):
 											 color, 0, False)
 		return color
 
+	def open(self):
+		print('Open')
+
+	def save(self):
+		print('Save')
+
+	def help(self):
+		print('Help')
+
+	def about(self):
+		print('About')
+
 	def initUI(self):
 		'''
 		answer = QMessageBox.question(self, 'DC/Marvel', 'Which do you prefer?',
@@ -46,24 +58,31 @@ class App(QMainWindow):
 		self.setGeometry(self.left,self.top,self.width,self.height)
 		self.statusBar().showMessage(self.message)
 
-		self.getAge()	
-		self.chooseColor()
+		#self.getAge()	
+		#self.chooseColor()
 		self.show()
 
+		#Main menu
 		mainMenu = self.menuBar()
 		fileMenu = mainMenu.addMenu('File')
 		helpMenu = mainMenu.addMenu('Help')
 
 		#Adding to File menu
 		openButton = QAction('Open', self)
+		openButton.triggered.connect(self.open)
 		fileMenu.addAction(openButton)
+
 		saveButton = QAction('Save', self)
+		saveButton.triggered.connect(self.save)
 		fileMenu.addAction(saveButton)
 
 		#Adding to Help menu
 		helpButton = QAction('Help', self)
+		helpButton.triggered.connect(self.help)
 		helpMenu.addAction(helpButton)
+
 		aboutButton = QAction('About', self)
+		aboutButton.triggered.connect(self.about)
 		helpMenu.addAction(aboutButton)
 
 
