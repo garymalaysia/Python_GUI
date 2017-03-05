@@ -3,7 +3,8 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QApplication, QWidget 
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QMessageBox
-from PyQt5.QtWidgets import QInputDialog, QLineEdit, QAction
+from PyQt5.QtWidgets import QInputDialog, QLineEdit, QAction, QLabel
+from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QFileDialog
 
 class App(QMainWindow):
 
@@ -28,6 +29,19 @@ class App(QMainWindow):
 											 color, 0, False)
 		return color
 
+	def openFileNameDialog(self):
+		options = QFileDialog.Options()
+		fileName, _ = QFileDialog.getOpenFileName(self, 'QFileDialog.getOpenFileName()', '', 'All Files (*);;Python Files (*.py)', options=options)
+		if fileName:
+			return fileName
+
+	def saveFileDialog(self):
+		options = QFileDialog.Options()
+		options = QFileDialog.DontUseNativeDialog
+		fileName, _ = QFileDialog.getSaveFileName(self, 'QFileDialog.getSaveFileName()', '', 'All Files (*);;Text Files (*.txt)', options=options) 
+		if fileName:
+			return fileName
+
 	def open(self):
 		print('Open')
 
@@ -38,7 +52,7 @@ class App(QMainWindow):
 		print('Help')
 
 	def about(self):
-		print('About')
+		QMessageBox.question(self, 'About', 'About us')
 
 	def initUI(self):
 		'''
@@ -60,6 +74,7 @@ class App(QMainWindow):
 
 		#self.getAge()	
 		#self.chooseColor()
+		#self.openFileNameDialog()
 		self.show()
 
 		#Main menu
@@ -69,11 +84,13 @@ class App(QMainWindow):
 
 		#Adding to File menu
 		openButton = QAction('Open', self)
-		openButton.triggered.connect(self.open)
+		#openButton.triggered.connect(self.open)
+		openButton.triggered.connect(self.openFileNameDialog)
 		fileMenu.addAction(openButton)
 
 		saveButton = QAction('Save', self)
-		saveButton.triggered.connect(self.save)
+		#saveButton.triggered.connect(self.save)
+		saveButton.triggered.connect(self.saveFileDialog)
 		fileMenu.addAction(saveButton)
 
 		#Adding to Help menu
