@@ -8,27 +8,17 @@ from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QFileDialog
 from PyQt5.QtWidgets import QVBoxLayout
 
 #class App(QMainWindow):
+class App(QWidget):
 
 	def __init__(self):
 		super().__init__()
-		self.title = 'Mark III'
+		self.title = 'Mark IV'
 		self.left = 100
 		self.top = 100
 		self.width = 500
 		self.height = 300
-		self.message = 'Tutorial 3'
+		self.message = 'Python GUI Tutorial'
 		self.initUI()
-
-	def getAge(self):
-		age, okPressed = QInputDialog.getInt(self, 'Get Integer', 'Age?',
-											 18, 16, 50, 1)
-		return age
-	
-	def chooseColor(self):
-		color = ('Red', 'Blue', 'Green')
-		color, choice = QInputDialog.getItem(self, 'Choose color', 'Color: ',
-											 color, 0, False)
-		return color
 
 	#function to open files
 	def openFileNameDialog(self):
@@ -68,53 +58,18 @@ from PyQt5.QtWidgets import QVBoxLayout
 		self.tableWidget.setColumnCount(2)
 
 	def initUI(self):
-		'''
-		answer = QMessageBox.question(self, 'DC/Marvel', 'Which do you prefer?',
-							 		  QMessageBox.Yes | QMessageBox.No )
-		if answer == QMessageBox.Yes:
-			self.setWindowTitle(self.title)
-			self.setGeometry(self.left,self.top,self.width,self.height)
-			self.statusBar().showMessage(self.message)
-		else:
-			self.setWindowTitle('Exiting Window')
-			self.setGeometry(100,100,250,40)
-			self.statusBar().showMessage('Goodbye!')
-		'''
 
 		self.setWindowTitle(self.title)
 		self.setGeometry(self.left,self.top,self.width,self.height)
-		self.statusBar().showMessage(self.message)
+		#self.statusBar().showMessage(self.message)
 
-		#self.getAge()	
-		#self.chooseColor()
-		#self.openFileNameDialog()
+		self.createTable()
+		
+		self.layout = QVBoxLayout()
+		self.layout.addWidget(self.tableWidget)
+		self.setLayout(self.layout)
 
 		self.show()
-
-		#Main menu
-		mainMenu = self.menuBar()
-		fileMenu = mainMenu.addMenu('File')
-		helpMenu = mainMenu.addMenu('Help')
-
-		#Adding to File menu
-		openButton = QAction('Open', self)
-		openButton.triggered.connect(self.open)
-		#openButton.triggered.connect(self.openFileNameDialog)
-		fileMenu.addAction(openButton)
-
-		saveButton = QAction('Save', self)
-		saveButton.triggered.connect(self.save)
-		#saveButton.triggered.connect(self.saveFileDialog)
-		fileMenu.addAction(saveButton)
-
-		#Adding to Help menu
-		helpButton = QAction('Help', self)
-		helpButton.triggered.connect(self.help)
-		helpMenu.addAction(helpButton)
-
-		aboutButton = QAction('About', self)
-		aboutButton.triggered.connect(self.about)
-		helpMenu.addAction(aboutButton)
 
 
 if __name__ == '__main__':
