@@ -15,8 +15,8 @@ class App(QWidget):
 		self.title = 'Mark IV'
 		self.left = 100
 		self.top = 100
-		self.width = 500
-		self.height = 300
+		self.width = 550
+		self.height = 400
 		self.message = 'Python GUI Tutorial'
 		self.initUI()
 
@@ -54,8 +54,40 @@ class App(QWidget):
 	def createTable(self):
 		#Table
 		self.tableWidget = QTableWidget()
-		self.tableWidget.setRowCount(4)
-		self.tableWidget.setColumnCount(2)
+		self.tableWidget.setRowCount(7)
+		self.tableWidget.setColumnCount(6)
+		self.tableWidget.setItem(0,0, QTableWidgetItem('   '))
+		self.tableWidget.setItem(0,1, QTableWidgetItem('Monday'))
+		self.tableWidget.setItem(0,2, QTableWidgetItem('Tuesday'))
+		self.tableWidget.setItem(0,3, QTableWidgetItem('Wednesday'))
+		self.tableWidget.setItem(0,4, QTableWidgetItem('Thursday'))
+		self.tableWidget.setItem(0,5, QTableWidgetItem('Friday'))
+		self.tableWidget.setItem(1,0, QTableWidgetItem('9-10'))
+		self.tableWidget.setItem(2,0, QTableWidgetItem('10-11'))
+		self.tableWidget.setItem(3,0, QTableWidgetItem('11-12'))
+		self.tableWidget.setItem(4,0, QTableWidgetItem('12-1'))
+		self.tableWidget.setItem(5,0, QTableWidgetItem('1-2'))
+		self.tableWidget.setItem(6,0, QTableWidgetItem('2-3'))
+		self.tableWidget.setItem(1,1, QTableWidgetItem('Sarah'))
+		self.tableWidget.setItem(2,1, QTableWidgetItem('Sarah'))
+		self.tableWidget.setItem(3,1, QTableWidgetItem('Sarah'))
+		self.tableWidget.setItem(4,1, QTableWidgetItem('John'))
+		self.tableWidget.setItem(5,1, QTableWidgetItem('John'))
+		self.tableWidget.setItem(6,1, QTableWidgetItem('John'))
+		self.tableWidget.setItem(1,2, QTableWidgetItem('Jennifer'))
+		self.tableWidget.setItem(2,2, QTableWidgetItem('Jennifer'))
+		self.tableWidget.setItem(3,2, QTableWidgetItem('Jennifer'))
+		self.tableWidget.setItem(4,2, QTableWidgetItem('Freddy'))
+		self.tableWidget.setItem(5,2, QTableWidgetItem('Freddy'))
+		self.tableWidget.setItem(6,2, QTableWidgetItem('Freddy'))
+
+		self.tableWidget.doubleClicked.connect(self.on_click)
+
+	@pyqtSlot()
+	def on_click(self):
+		print('\n')
+		for currentQTableWidgetItem in self.tableWidget.selectedItems():
+			print(currentQTableWidgetItem.row(), currentQTableWidgetItem.column(), currentQTableWidgetItem.text())
 
 	def initUI(self):
 
