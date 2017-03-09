@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QInputDialog, QLineEdit, QAction, QLabel
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem, QFileDialog
 from PyQt5.QtWidgets import QVBoxLayout
 
-#class App(QMainWindow):
+class App(QMainWindow):
 
 	def __init__(self):
 		super().__init__()
