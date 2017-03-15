@@ -24,7 +24,7 @@ class GUI:
 
 		self.close_button = Button(master, text="Close", command=master.quit)
 		#self.close_button.grid(row=10, column=5, sticky = E)
-		self.close_button.place(rely=1.0, relx=1.0, x=0, y=0, anchor=SE)
+		self.close_button.place(rely=1.0, relx=0.0, x=0, y=0, anchor=SW)
 		#self.close_button.pack()
 
 
@@ -32,15 +32,18 @@ class GUI:
 		self.displayText = self.display.get()
 		self.displayLabel = Label(self.master, text=self.displayText)#.pack()
 		self.displayLabel.grid(row=8, stick= W)
+		self.display_button2 = Button(self.master, text="Random", command=self.randGen)
+		self.display_button2.grid(row=5, column=1, sticky=W)
+		self.clear()
 
 	def randGen(self):
 		self.a = random.randint(1,10)
 		if self.a%2 == 0:
 			#self.displayRand = Label(self.master, text=self.a).pack()
-			self.EnterMessage()
+			self.enterMessage()
 		#print(self.a)
 		
-	def EnterMessage(self):
+	def enterMessage(self):
 		self.label = Label(self.master, text="Enter a message: ")
 		self.label.grid(row=5, sticky = W)
 		#self.label.pack()
@@ -53,6 +56,11 @@ class GUI:
 		self.display_button = Button(self.master, text="Enter", command=self.displayMessage)
 		self.display_button.grid(row=7, column=0, sticky = W)
 		#self.display_button.pack()
+
+	def clear(self):
+		self.label.grid_forget()
+		self.display_entry.grid_forget()
+		self.display_button.grid_forget()
 
 if __name__ == "__main__":
 	root = Tk()
