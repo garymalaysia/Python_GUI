@@ -66,6 +66,7 @@ def search_Student (x):
         timing.register(student_name, x)
         timing.excel(x)
         wb.save('testing.xlsx')
+        return "****** NEW STUDENT ******"
     else:
         print ('\a')
         logs(x,again)
@@ -85,3 +86,4 @@ def search_Student (x):
             wb.save('testing.xlsx')
         
         print ("\n\tWelcome Back! ",again,"\n")
+        return "Welcome Back! " + again
