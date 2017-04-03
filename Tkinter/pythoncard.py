@@ -41,6 +41,7 @@ from openpyxl.utils import coordinate_from_string
 from openpyxl.styles import Font
 from header import header
 from search_student import search_Student
+from test_search import search_Student
 #from art import art_schedule
 from formular import formular
 #from exec import exe

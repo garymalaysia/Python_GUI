@@ -39,12 +39,12 @@ def logs (a,b):
 	if b != None:
 		new_row=curr_row+1
 		#sheet['%s%d' % (curr_col,new_row)] = a+ " " + b +" "+ time
-		sheet['%s%d' % (curr_col,column_to_add(curr_col))] = time+">>> "+a+"   "+b
+		sheet['%s%d' % (curr_col,column_to_add(curr_col))] = time+">>> "+str(a)+"   "+str(b)
 		
 	else:
 		new_row=curr_row+1
 		b = " "
-		sheet['%s%d' % (curr_col,column_to_add(curr_col))] = time+">>> "+a+"   "+b
+		sheet['%s%d' % (curr_col,column_to_add(curr_col))] = time+">>> "+str(a)+"   "+str(b)
 		
 	#print (column_to_add(curr_col))
 	wb.save('report.xlsx')
