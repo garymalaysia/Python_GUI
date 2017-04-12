@@ -7,7 +7,7 @@ from openpyxl.compat import range
 from openpyxl.utils import get_column_letter, column_index_from_string
 from openpyxl.utils import coordinate_from_string
 #from timer import prompt_with_timeout
-from timer import studentGUI
+from test_timer import studentGUI
 from reporting import logs
 import random
 from clockin import timesheet
@@ -51,16 +51,19 @@ def search_Student (x):
                 wb.save('testing.xlsx')
                 count+=1
                 again=sheet.cell('%s%d' % (col2,cool)).value
-                email=sheet.cell('%s%d' % (col3,cool)).value            
+                email=sheet.cell('%s%d' % (col3,cool)).value
+               
     if count< 1 :
         print ('\a\a\a\a\a\a')
         os.system ('clear')
         #os.system ('echo "New Student"')
         print ("\t\t****** NEW STUDENT ******\n")
+        
         root = Tk()
-        #search = studentGUI(root)
+        #search = studentGUI(root)        
         #student_name = search.prompt_with_timeout()
-        student_name = studentGUI(root)
+        student_name = studentGUI(root).prompt_with_timeout()
+
         print("student_name =", student_name)
         #student_name = 'Paul'
         #student_name , student_email = search.prompt_with_timeout
@@ -68,6 +71,7 @@ def search_Student (x):
 
         print("student_name(from if) =", student_name)
         #again = student_name
+
 
         sheet['%s%d' % (col2,insert_name)] =str(student_name)
         sheet['%s%d' % (col,insert_name)] =str(x)
@@ -87,11 +91,16 @@ def search_Student (x):
             print ('\a\a\a\a\a\a')
             #student_name=input("Enter Name -> ")
             #student_email=input("Enter Student's email -> ")
-            root = Tk()
+            #root = Tk()
             #search = studentGUI(root)
             #student_name , student_email = search.prompt_with_timeout
-            #student_name= search.prompt_with_timeout()
-            student_name = studentGUI(root)
+            
+            root = Tk()
+            #search = studentGUI(root)
+            #student_name = search.prompt_with_timeout()
+            #search.prompt_with_timeout()
+            student_name = studentGUI(root).prompt_with_timeout()
+            
             print("student_name(from else) =", student_name)
             sheet['%s%d' % (col2,cool)] = str(student_name)
             #sheet['%s%d' % (col3,cool)] =str(student_email)
@@ -103,4 +112,3 @@ def search_Student (x):
         
         print ("\n\tWelcome Back! ",again,"\n")
         return "Welcome Back! " + again
-

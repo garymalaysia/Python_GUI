@@ -41,6 +41,7 @@ from openpyxl.utils import coordinate_from_string
 from openpyxl.styles import Font
 from header import header
 from search_student import search_Student
+from test_search import search_Student
 #from art import art_schedule
 from formular import formular
 #from exec import exe
@@ -100,7 +101,7 @@ class GUI:
     def __init__(self, master, hid):
         self.master = master
         master.title("JJAY Veterans Association HID Scanner")
-        master.update_idletasks()
+        #master.update_idletasks()
         width = 400
         height = 400
         x = (master.winfo_screenwidth() // 2) - (width // 2)
@@ -110,6 +111,11 @@ class GUI:
         self.hid = hid #for parameter hid
 
         self.cardReader()
+        self.closeButton()
+
+    def closeButton(self):
+        self.close_button = Button(self.master, text="Close", command=self.master.quit)
+        self.close_button.place(rely=1.0, relx=0.0, x=0, y=0, anchor=SW)    
 
     def cardReader(self):
         self.txt = Label(self.master, text="------Tap card to SIGN IN-------")
@@ -119,7 +125,6 @@ class GUI:
         self.scan.pack()
 
     def scanButton(self):
-        
         self.displayScan = Label(self.master, text="Scanning card...")
         self.displayScan.pack()   
         
@@ -138,7 +143,9 @@ class GUI:
         
         if self.cs.card == self.cardtype and self.length == self.word_len:
             header()
-            search_Student(self.texting)
+            self.a = search_Student(self.texting)
+            self.student = Label(self.master, text=self.a)
+            self.student.pack()
             self.cs.connection.disconnect()
             formular()
         else:
